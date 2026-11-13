@@ -79,4 +79,19 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>idea-local</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+            <properties>
+                <spring-boot.run.profiles>idea</spring-boot.run.profiles>
+            </properties>
+        </profile>
+    </profiles>
 </project>
