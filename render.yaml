@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: foodsave-backend
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: FOODSAVE_AUTH_SECRET
+        generateValue: true
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://frontfoodsave.web.app
+      - key: DATABASE_HOST
+        fromDatabase:
+          name: foodsave-db
+          property: host
+      - key: DATABASE_PORT
+        fromDatabase:
+          name: foodsave-db
+          property: port
+      - key: DATABASE_NAME
+        fromDatabase:
+          name: foodsave-db
+          property: database
+      - key: DATABASE_USER
+        fromDatabase:
+          name: foodsave-db
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: foodsave-db
+          property: password
+databases:
+  - name: foodsave-db
+    databaseName: foodsavedb
+    user: foodsave
+    plan: free
