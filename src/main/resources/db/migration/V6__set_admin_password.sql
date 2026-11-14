@@ -1,0 +1,1 @@
+UPDATE accounts SET password_hash = 'pbkdf2$210000$cbsOyBJAkTLrjB7e0qEmBA$A_qIMleiW5RvcxxJJ3DfGUZ1GfKq6m25gR1dVJhH3IQ', active = TRUE, updated_at = CURRENT_TIMESTAMP WHERE email = 'admin@gmail.com' AND role = 'ADMIN';
