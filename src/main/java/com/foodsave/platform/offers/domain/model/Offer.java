@@ -44,7 +44,7 @@ public class Offer {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 30)
     private OfferStatus status = OfferStatus.ACTIVE;
-    @Column(name = "image_url", nullable = false, length = 2048)
+    @Column(name = "image_url", nullable = false, columnDefinition = "text")
     private String image = "";
     @Column(name = "plus_exclusive", nullable = false)
     private boolean plusExclusive;

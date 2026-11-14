@@ -1,0 +1,2 @@
+ALTER TABLE offers
+    ALTER COLUMN image_url TYPE TEXT;
