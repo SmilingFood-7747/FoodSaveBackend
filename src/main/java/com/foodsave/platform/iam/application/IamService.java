@@ -2,6 +2,7 @@ package com.foodsave.platform.iam.application;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 import com.foodsave.platform.iam.domain.model.Account;
 import com.foodsave.platform.iam.domain.model.AccountRole;
 import com.foodsave.platform.iam.infrastructure.persistence.jpa.AccountJpaRepository;
@@ -35,6 +36,7 @@ public class IamService {
     }
 
     public Account get(Long id) { return accounts.findById(id).orElseThrow(() -> new ResourceNotFoundException("account.not.found")); }
+    public List<Account> listAccounts() { return accounts.findAll(); }
     public String token(Account account) { return tokens.issue(account); }
 
     @Transactional
