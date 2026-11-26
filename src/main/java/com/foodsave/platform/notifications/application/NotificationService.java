@@ -24,9 +24,11 @@ public class NotificationService {
     public NotificationPreferences getPreferences(Long accountId) { return preferences.findById(accountId).orElseGet(() -> new NotificationPreferences(accountId)); }
     public boolean remindersEnabled(Long accountId) { return getPreferences(accountId).isRemindersEnabled(); }
     public boolean reminderAlreadySent(Long reservationId) { return notifications.existsByReservationIdAndType(reservationId, "PICKUP_REMINDER"); }
-    @Transactional public NotificationPreferences updatePreferences(Long accountId, boolean email, boolean push, boolean reminders, boolean nearby) {
+    @Transactional public NotificationPreferences updatePreferences(Long accountId, boolean email, boolean push, boolean reminders, boolean nearby, java.util.Set<String> categories) {
         var prefs = preferences.findById(accountId).orElseGet(() -> new NotificationPreferences(accountId));
-        prefs.update(email, push, reminders, nearby); return preferences.save(prefs);
+        prefs.update(email, push, reminders, nearby);
+        prefs.updatePreferredCategories(categories);
+        return preferences.save(prefs);
     }
     @Transactional public void markRead(Long accountId, Long notificationId) {
         var notification = notifications.findById(notificationId).orElseThrow(() -> new ResourceNotFoundException("notification.not.found"));

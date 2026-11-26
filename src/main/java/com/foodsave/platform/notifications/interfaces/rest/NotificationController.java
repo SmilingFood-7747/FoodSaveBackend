@@ -32,6 +32,6 @@ public class NotificationController {
     @PatchMapping("/{id}/read") public void markRead(@AuthenticationPrincipal FoodSavePrincipal actor, @PathVariable Long id) { service.markRead(actor.accountId(), id); }
     @GetMapping("/preferences") public PreferencesResource preferences(@AuthenticationPrincipal FoodSavePrincipal actor) { return PreferencesResource.from(service.getPreferences(actor.accountId())); }
     @PutMapping("/preferences") public PreferencesResource update(@AuthenticationPrincipal FoodSavePrincipal actor, @RequestBody UpdatePreferencesRequest request) {
-        return PreferencesResource.from(service.updatePreferences(actor.accountId(), request.emailEnabled(), request.pushEnabled(), request.remindersEnabled(), request.nearbyOffersEnabled()));
+        return PreferencesResource.from(service.updatePreferences(actor.accountId(), request.emailEnabled(), request.pushEnabled(), request.remindersEnabled(), request.nearbyOffersEnabled(), request.preferredCategories()));
     }
 }
